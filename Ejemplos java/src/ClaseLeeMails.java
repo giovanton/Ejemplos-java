@@ -146,14 +146,16 @@ public class ClaseLeeMails {
 		String [] array_mails = null; //aquí guardaer los mails, cada uno en su posición!
 		BufferedReader br = null; // Objeto para leer un fichero de texto por líneas!
 		
-				
+		long time1 = System.currentTimeMillis();		
 		br = abrirYPrepararFichero(nombre);
 		lista_mails = obtenerEmails(br);
 		cerrarFichero (br);
 		array_mails =  hacerArrayDeMails(lista_mails);
 		ordenarMails (array_mails); // Este método es opcional, aunque luego veremos que es muy fácil de hacer!
 		mostrarMails(array_mails);
+		long time2 = System.currentTimeMillis();
 		
+		System.out.println("Tiempo transcurrido : " + "final : " + +time2+ " " + "inicial: "+time1+ "="+(time2 - time1));
 	}
 	
 }
