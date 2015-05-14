@@ -14,11 +14,11 @@ public class ClaseLeeMails {
 	{
 		String mails_de_linea_actual = "";
 		
-		//TODO este es el método más difícil...recibiré una línea y tendré que extraer de ella todos correos
+		//TODO este es el mï¿½todo mï¿½s difï¿½cil...recibirï¿½ una lï¿½nea y tendrï¿½ que extraer de ella todos correos
 		//e irlos concatenando en un String de salida
-		//Pista---> Sabemos la longuitud de la linea, sabemos que un Email viene encerrado entre símbolos especiales...
+		//Pista---> Sabemos la longuitud de la linea, sabemos que un Email viene encerrado entre sï¿½mbolos especiales...
 		// Paciencia y a pensar como si lo estuvieras cogiendo con las manos...ve declarando todas las condiciones, variables y bucles que necesites!!!
-		//Poco a poco...El lápiz y papel, ayudan siempre un montón!
+		//Poco a poco...El lï¿½piz y papel, ayudan siempre un montï¿½n!
 		
 		int longuitud = linea_actual.length();
 		int posicion_actual = 0;
@@ -45,23 +45,23 @@ public class ClaseLeeMails {
 	
 	
 	/**
-	 * Este métdo ya viene hecho!
-	 * En él, recorro el fichero y devuelvo un String, que estará compuesto por todos
+	 * Este mï¿½tdo ya viene hecho!
+	 * En ï¿½l, recorro el fichero y devuelvo un String, que estarï¿½ compuesto por todos
 	 * los mails que aparecen en el fichero separados por /
 	 * 
 	 * Por ejemplo, para este fichero: 
 	 * 
-	 * vxscavsdfgv***susana@kelly.org///asv afsvasczx xcvasdf'ow048t09q38r`0gf9uq nw9eru`	wefu8ioW´`EO
-	 * qer`kgq`pegiq3'5oyq'3'oaae'5oy'q35oy'q35oygadkfbbASKLF,B`R,BEPÈD,FVA´PSF,DVÑ,AFS`BKAFSÇKBAFDÑS
-     * AOBRJ KQG'¡3KGP`KVASF***francesco@hp.es///BLALÑDFBMMA
+	 * vxscavsdfgv***susana@kelly.org///asv afsvasczx xcvasdf'ow048t09q38r`0gf9uq nw9eru`	wefu8ioWï¿½`EO
+	 * qer`kgq`pegiq3'5oyq'3'oaae'5oy'q35oy'q35oygadkfbbASKLF,B`R,BEPï¿½D,FVAï¿½PSF,DVï¿½,AFS`BKAFSï¿½KBAFDï¿½S
+     * AOBRJ KQG'ï¿½3KGP`KVASF***francesco@hp.es///BLALï¿½DFBMMA
      * 
-     * debería devolver un String que fuera susana@kelly.org/francesco@hp.es
+     * deberï¿½a devolver un String que fuera susana@kelly.org/francesco@hp.es
      * 
-     * Para simplificar el proceso, cada línea obtenida del fichero, la voy
-     * a procesar aparte, en el método procesarLinea; que se va a encargar sólo 
-     * de procesar cada línea. De este modo, sigo una máxima en programación:
+     * Para simplificar el proceso, cada lï¿½nea obtenida del fichero, la voy
+     * a procesar aparte, en el mï¿½todo procesarLinea; que se va a encargar sï¿½lo 
+     * de procesar cada lï¿½nea. De este modo, sigo una mï¿½xima en programaciï¿½n:
      * Si una cosa es muy larga o complicada....LA DIVIDO! 
-     * "DIVIDE Y VENCERÁS"
+     * "DIVIDE Y VENCERï¿½S"
 	 * 
 	 * @param br
 	 * @return
@@ -128,9 +128,9 @@ public class ClaseLeeMails {
 	
 
 	/**
-	 * NOTA Todos los métodos de la clase son static, para facilitar su uso sin tener
+	 * NOTA Todos los mï¿½todos de la clase son static, para facilitar su uso sin tener
 	 * que instanciar un Objeto. Si no fueran static, con declarar un objeto de la clase
-	 * ya podría llamar a los métodos, por ejempleo
+	 * ya podrï¿½a llamar a los mï¿½todos, por ejempleo
 	 * 	
 	 * 	ClaseLeeMails clm = new ClaseLeeMails();
 	 *  clm.ababrirYPrepararFichero ... etc 
@@ -141,21 +141,28 @@ public class ClaseLeeMails {
 	
 	public static void main(String[] args) throws IOException {
 		
+		Runtime rt = Runtime.getRuntime();
+		long mem1 = rt.freeMemory();
 		String nombre = "fichero.txt";//el nombre del fichero de entrada
-		String lista_mails = null; //aquí guardaré los mails, separados por la el símbolo /
-		String [] array_mails = null; //aquí guardaer los mails, cada uno en su posición!
-		BufferedReader br = null; // Objeto para leer un fichero de texto por líneas!
+		String lista_mails = null; //aquï¿½ guardarï¿½ los mails, separados por la el sï¿½mbolo /
+		String [] array_mails = null; //aquï¿½ guardaer los mails, cada uno en su posiciï¿½n!
+		BufferedReader br = null; // Objeto para leer un fichero de texto por lï¿½neas!
+		
 		
 		long time1 = System.currentTimeMillis();		
 		br = abrirYPrepararFichero(nombre);
 		lista_mails = obtenerEmails(br);
 		cerrarFichero (br);
 		array_mails =  hacerArrayDeMails(lista_mails);
-		ordenarMails (array_mails); // Este método es opcional, aunque luego veremos que es muy fácil de hacer!
+		ordenarMails (array_mails); // Este mï¿½todo es opcional, aunque luego veremos que es muy fï¿½cil de hacer!
 		mostrarMails(array_mails);
 		long time2 = System.currentTimeMillis();
-		
+		long mem2 = rt.freeMemory();
+		rt.gc();
+		long mem3 = rt.freeMemory();
 		System.out.println("Tiempo transcurrido : " + "final : " + +time2+ " " + "inicial: "+time1+ "="+(time2 - time1));
+		System.out.println("Memoria utilizada : "+ (mem2 - mem1));
+		System.out.println("Memoria liberada : "+ (mem3 - mem2));
 	}
 	
 }
