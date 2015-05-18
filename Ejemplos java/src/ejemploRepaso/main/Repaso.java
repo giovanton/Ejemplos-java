@@ -10,7 +10,6 @@ import ejemploRepaso.exceptions.PersonaNoEncontradaException;
 public class Repaso {
 
 	public static void main(String[] args) throws IOException {
-		// TODO Auto-generated method stub
 		Persona p = new Persona("Marcos", 30);
 		Persona p1 = new Persona("Lucas", 31);
 		Persona p2= new Persona("Antonio", 32);
@@ -25,15 +24,17 @@ public class Repaso {
 			lp.insertarPersona(p2);
 			lp.insertarPersona(p3);
 			lp.insertarPersona(p4);
+			lp.insertarPersona(p4);
 		} catch (InsertarPersonaException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (PersonaNoEncontradaException e) {
 			e.printStackTrace();
 		}
 		lp.mostrar();
 		try {
-			lp.buscarPersona("Luis");
+			System.out.println(lp.buscarPersona("Luis"));
+			
 		} catch (PersonaNoEncontradaException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		lp.serializar();

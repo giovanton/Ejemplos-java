@@ -7,6 +7,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Properties;
 
+import javax.management.openmbean.ArrayType;
+
 import ejemploRepaso.exceptions.InsertarPersonaException;
 import ejemploRepaso.exceptions.PersonaNoEncontradaException;
 
@@ -32,16 +34,16 @@ public class ListaPersonas {
 		int a = 0;
 		Persona p = null;
 		boolean encontrado = false;
-		
 		while (!encontrado && (a <= numeroPersonas)){
-				if (array_personas[a].getNombre().equals(nombre)){
-					p = array_personas[a];
-					encontrado = true;
-				}
-				a++;
-				}		
+		if (array_personas[a].getNombre().equals(nombre)){
+			p = array_personas[a];
+			encontrado = true;
+			return p;
+		}
+		a++;
+		};	
 			
-		return p;
+		return null;
 	}
 	
 	public Persona buscarPersona (int edad)
@@ -54,11 +56,12 @@ public class ListaPersonas {
 				if (array_personas[a].getEdad()==edad){
 					p = array_personas[a];
 					encontrado = true;
+					return p;
 				}
 				a++;
 				}		
 			
-		return p;
+		return null;
 	}
 	
 	public boolean serializar() throws IOException
@@ -85,17 +88,28 @@ public class ListaPersonas {
 		try {
 			array_personas = (Persona[]) ois.readObject();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		ois.close();
 		return array_personas;
 	}
 	
-	public void insertarPersona (Persona p) throws InsertarPersonaException
+	public void insertarPersona (Persona p) throws InsertarPersonaException, PersonaNoEncontradaException
 	{
+	 boolean duplicado = false;
+	 int a = 0;
 		if (!estaLlena()){
-		  array_personas[numeroPersonas] = p;
-		  numeroPersonas++;
+			while (!duplicado || a<= numeroPersonas)
+			{
+				//TODO : hacer un método aparte para comprobar la duplicidad
+				if (p.getNombre().equals(array_personas[a].getNombre())){
+						System.out.println("Esta persona esta en la lista");
+						duplicado = true;
+				}else{
+			      array_personas[numeroPersonas] = p;
+			      numeroPersonas++;}
+				a++;
+			}
 		} else {
 			throw new InsertarPersonaException();
 		}
