@@ -5,14 +5,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Iterator;
 import java.util.Properties;
 
 import javax.management.openmbean.ArrayType;
 
+import colecciones.Recorrer;
 import ejemploRepaso.exceptions.InsertarPersonaException;
 import ejemploRepaso.exceptions.PersonaNoEncontradaException;
 
-public class ListaPersonas {
+public class ListaPersonas implements Iterable{
 	
 	public static final int CAPACIDAD = 10;
 	
@@ -101,7 +103,7 @@ public class ListaPersonas {
 		if (!estaLlena()){
 			while (!duplicado || a<= numeroPersonas)
 			{
-				//TODO : hacer un método aparte para comprobar la duplicidad
+				//TODO : hacer un mï¿½todo aparte para comprobar la duplicidad
 				if (p.getNombre().equals(array_personas[a].getNombre())){
 						System.out.println("Esta persona esta en la lista");
 						duplicado = true;
@@ -132,5 +134,11 @@ public class ListaPersonas {
 		for(int i=0;i < numeroPersonas;i++){
 			System.out.println(array_personas[i]);
 		}
+	}
+
+	public Iterator iterator() {
+		// TODO Auto-generated method stub
+		Recorrer reco = new Recorrer();
+		return reco;
 	}
 }
