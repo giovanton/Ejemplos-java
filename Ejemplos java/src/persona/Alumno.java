@@ -1,5 +1,6 @@
-package ejemploRepaso.base;
+package persona;
 
+import ejemploRepaso.base.TipoNota;
 import ejemploRepaso.exceptions.NotaException;
 
 public class Alumno extends Persona{

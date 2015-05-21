@@ -2,7 +2,7 @@ package persona;
 
 import java.io.Serializable;
 
-public class Persona implements Serializable{
+public class Persona implements Serializable,Comparable<Persona>{
 /**
 	 * 
 	 */
@@ -40,5 +40,14 @@ public String toStringObString() {
 	String sup = super.toString();
 	
 	return sup;
+}
+
+public int compareTo(Persona o) {
+	if (o.edad > this.edad){
+		return -1;
+	} else if (o.edad < this.edad){
+		return 1;
+	}
+	return 0;
 }
 }
