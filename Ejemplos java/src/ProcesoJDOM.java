@@ -1,4 +1,5 @@
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -33,10 +34,11 @@ public class ProcesoJDOM {
 		// Recorremos los hijos de la etiqueta ra�z
 		List<Element> libros = raiz.getChildren();
 		List<Libro> al = new ArrayList<Libro>();
+		Integer a = 0;
 		for (Element libro : libros) {
 			//para cada libro, obtenemos su detalle
 			System.out.println(libro.getAttribute("isbn"));
-			String isbn = libro.getAttribute("isbn").toString();
+			String isbn = libro.getAttribute("isbn").getValue();
 			String tit = null;
 			String autor = null;
 			String anyo = null;
@@ -62,9 +64,12 @@ public class ProcesoJDOM {
 			lib1.setAnyo(anyo);
 			lib1.setEditorial(editorial);
 			al.add(lib1);
+			a++;
 		}
+	
 		Collections.sort(al);
 		System.out.println("lista ordenada :\n" + al);
+		
 		
 		//A�ADO UN NUEVO HIJO
 		Element padre = documentJDOM.getRootElement();
@@ -90,6 +95,38 @@ public class ProcesoJDOM {
 	    fw.write(docStr);
 	    fw.close();
 	    
+	    //Volvemos a generar un documento con el ArrayList ordenado
+	    Document docJDOM = new Document(new Element("libros"));
+	    Element pp = docJDOM.getRootElement();
+	    for (Libro l : al) {
+	    	Element nuevolib = new Element("libro");
+	    	nuevolib.setAttribute("isbn", l.getIsbn());
+	    	pp.addContent(nuevolib);
+	    	Element newtit = new Element("titulo");
+	    	nuevolib.addContent(newtit);
+	    	newtit.setText(l.getTitulo());
+	    	Element newautor = new Element("autor");
+	    	nuevolib.addContent(newautor);
+	    	newautor.setText(l.getAutor());
+	    	Element newany = new Element("anyo");
+	    	nuevolib.addContent(newany);
+	    	newautor.setText(l.getAnyo());
+	    	Element newedit = new Element("editorial");
+	    	nuevolib.addContent(newedit);
+	    	newautor.setText(l.getEditorial());
+	    }
+    	Element newElement = new Element("Total");
+    	pp.addContent(newElement);
+	    newElement.setText(a.toString());
+	    Format format1 = Format.getPrettyFormat();
+	    // Creamos el serializador con el formato deseado  
+	    XMLOutputter xmloutputter1 = new XMLOutputter(format1);
+	    // Serializamos el document parseado  
+	    String docStr1 = xmloutputter1.outputString(docJDOM); 
+	    //Volcamos en un fichero
+	    FileWriter fw1 = new FileWriter("librosort.xml");
+	    fw1.write(docStr1);
+	    fw1.close();
 	}
 
 }
