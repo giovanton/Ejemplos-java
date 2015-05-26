@@ -1,5 +1,5 @@
 
-public class Libro {
+public class Libro implements Comparable<Libro>{
 	private String isbn = null;  
 	   private String titulo = null;  
 	   private String autor = null;  
@@ -61,7 +61,12 @@ public class Libro {
 	      sb.append("\nEditorial: "+editorial);  
 	        
 	      return sb.toString();  
-	   }  
+	   }
+
+	public int compareTo(Libro l) {
+		// TODO Auto-generated method stub
+		return this.titulo.compareTo(l.titulo);
+	}  
 	     
 	     
 	  

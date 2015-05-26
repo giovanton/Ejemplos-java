@@ -3,7 +3,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
+import java.util.TreeMap;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -26,20 +32,39 @@ public class ProcesoJDOM {
 		Element raiz = documentJDOM.getRootElement();
 		// Recorremos los hijos de la etiqueta ra�z
 		List<Element> libros = raiz.getChildren();
+		List<Libro> al = new ArrayList<Libro>();
 		for (Element libro : libros) {
 			//para cada libro, obtenemos su detalle
 			System.out.println(libro.getAttribute("isbn"));
+			String isbn = libro.getAttribute("isbn").toString();
+			String tit = null;
+			String autor = null;
+			String anyo = null;
+			String editorial = null;
 			List<Element> detalles = libro.getChildren();
-
 			for (Element detalle : detalles) {
-
 				System.out.println("Nombre =" + detalle.getName());
 				System.out.println("Valor =" + detalle.getValue());
-
+				if (detalle.getName().equals("titulo")) {
+					 tit = detalle.getValue();
+				} else if (detalle.getName().equals("autor")) {
+					 autor = detalle.getValue();
+				} else if (detalle.getName().equals("anyo")) {
+					 anyo = detalle.getValue();
+				} else if (detalle.getName().equals("editorial")) {
+					 editorial = detalle.getValue();
+				}
 			}
-
-			
+			Libro lib1 = new Libro();
+			lib1.setIsbn(isbn);
+			lib1.setTitulo(tit);
+			lib1.setAutor(autor);
+			lib1.setAnyo(anyo);
+			lib1.setEditorial(editorial);
+			al.add(lib1);
 		}
+		Collections.sort(al);
+		System.out.println("lista ordenada :\n" + al);
 		
 		//A�ADO UN NUEVO HIJO
 		Element padre = documentJDOM.getRootElement();
@@ -50,7 +75,7 @@ public class ProcesoJDOM {
 	    padre.addContent(nuevolibro);
 	    Element nuevotitulo = new Element("título");
 	    nuevolibro.addContent(nuevotitulo);
-	    nuevotitulo.setText("Ocho");
+	    nuevotitulo.setText("Los Juegos del hambre");
 
 	    
 	   //SERIALIZO EL DOCUMENT A UN FICHERO DE SALIDA
