@@ -101,17 +101,17 @@ public class ListaPersonas implements Iterable{
 	 boolean duplicado = false;
 	 int a = 0;
 		if (!estaLlena()){
-			while (!duplicado || a<= numeroPersonas)
+			/*while (!duplicado || a<= numeroPersonas)
 			{
 				//TODO : hacer un m�todo aparte para comprobar la duplicidad
 				if (p.getNombre().equals(array_personas[a].getNombre())){
 						System.out.println("Esta persona esta en la lista");
 						duplicado = true;
-				}else{
+				}else{*/
 			      array_personas[numeroPersonas] = p;
-			      numeroPersonas++;}
+			      numeroPersonas++;//}
 				a++;
-			}
+			//}
 		} else {
 			throw new InsertarPersonaException();
 		}
