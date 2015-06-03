@@ -1,4 +1,3 @@
-
 public class QueHace {
 
 	int a;// por estar declarada aquí, fuera de cualquier método; a es un

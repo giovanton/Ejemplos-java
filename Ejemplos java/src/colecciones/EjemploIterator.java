@@ -13,9 +13,9 @@ public class EjemploIterator {
 		personas = new ArrayList<Persona>();
 		Persona p = new Persona("Mario", 33);
 		personas.add(p);
-		Iterator<Persona> it_personas = personas.iterator(); 
-		
-		while (it_personas.hasNext()){
+		Iterator<Persona> it_personas = personas.iterator();
+
+		while (it_personas.hasNext()) {
 			p = it_personas.next();
 			System.out.println(p.getNombre() + " está en un ArrayList");
 		}

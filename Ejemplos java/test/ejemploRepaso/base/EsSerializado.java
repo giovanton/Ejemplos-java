@@ -3,10 +3,9 @@ package ejemploRepaso.base;
 import java.io.IOException;
 
 import org.hamcrest.Description;
-import org.hamcrest.TypeSafeMatcher;
+import org.junit.internal.matchers.TypeSafeMatcher;
 
-
-public class EsSerializado extends TypeSafeMatcher<Persona>{
+public class EsSerializado extends TypeSafeMatcher<Persona> {
 	ListaPersonas lp = new ListaPersonas();
 	Persona[] pArray = new Persona[10];
 
@@ -17,7 +16,7 @@ public class EsSerializado extends TypeSafeMatcher<Persona>{
 
 	@Override
 	protected boolean matchesSafely(Persona p1) {
-		
+
 		boolean dev = false;
 		try {
 			pArray = lp.deserializar();
@@ -26,7 +25,8 @@ public class EsSerializado extends TypeSafeMatcher<Persona>{
 			e.printStackTrace();
 		}
 		Persona p = pArray[0];
-		if ((p.getNombre().equals(p1.getNombre()) ) && (p.getEdad() == p1.getEdad())){
+		if ((p.getNombre().equals(p1.getNombre()))
+				&& (p.getEdad() == p1.getEdad())) {
 			dev = true;
 		}
 		return dev;

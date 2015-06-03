@@ -1,7 +1,7 @@
 package exceptions;
 
-public class IdiomaNoExiste extends Exception{
-	
+public class IdiomaNoExiste extends Exception {
+
 	/**
 	 * 
 	 */

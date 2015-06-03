@@ -12,12 +12,12 @@ public class Repaso {
 	public static void main(String[] args) throws IOException {
 		Persona p = new Persona("Marcos", 30);
 		Persona p1 = new Persona("Lucas", 31);
-		Persona p2= new Persona("Antonio", 32);
+		Persona p2 = new Persona("Antonio", 32);
 		Persona p3 = new Persona("Julian", 34);
 		Persona p4 = new Persona("Luis", 33);
-		
+
 		ListaPersonas lp = new ListaPersonas();
-		
+
 		try {
 			lp.insertarPersona(p);
 			lp.insertarPersona(p1);
@@ -33,7 +33,7 @@ public class Repaso {
 		lp.mostrar();
 		try {
 			System.out.println(lp.buscarPersona("Luis"));
-			
+
 		} catch (PersonaNoEncontradaException e) {
 			e.printStackTrace();
 		}

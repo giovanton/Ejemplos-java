@@ -1,10 +1,12 @@
 package ejemploRepaso.base;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -18,15 +20,17 @@ public class TestListaPersona {
 	static ejemploRepaso.base.Persona p3;
 	static ejemploRepaso.base.Persona p4;
 	static ejemploRepaso.base.Persona p5;
+
 	@BeforeClass
-	public static void inicioTest() throws InsertarPersonaException, PersonaNoEncontradaException {
+	public static void inicioTest() throws InsertarPersonaException,
+			PersonaNoEncontradaException {
 		lp = new ListaPersonas();
-		p1 = new ejemploRepaso.base.Persona("carlos",32);
-		p2 = new ejemploRepaso.base.Persona("juan",35);
-		p3 = new ejemploRepaso.base.Persona("marta",22);
-		p4 = new ejemploRepaso.base.Persona("carlota",32);
-	    p5 = new ejemploRepaso.base.Persona("sonia",23);
-	    
+		p1 = new ejemploRepaso.base.Persona("carlos", 32);
+		p2 = new ejemploRepaso.base.Persona("juan", 35);
+		p3 = new ejemploRepaso.base.Persona("marta", 22);
+		p4 = new ejemploRepaso.base.Persona("carlota", 32);
+		p5 = new ejemploRepaso.base.Persona("sonia", 23);
+
 		lp.insertarPersona(p1);
 		lp.insertarPersona(p2);
 		lp.insertarPersona(p3);
@@ -44,13 +48,15 @@ public class TestListaPersona {
 	}
 
 	@Test
-	public void testInsertarPersona() throws PersonaNoEncontradaException, InsertarPersonaException {
+	public void testInsertarPersona() throws PersonaNoEncontradaException,
+			InsertarPersonaException {
 		lp.insertarPersona(p5);
 		assertNotNull(lp.buscarPersona("sonia"));
 	}
 
 	@Test
-	public void testEstaLlena() throws InsertarPersonaException, PersonaNoEncontradaException{
+	public void testEstaLlena() throws InsertarPersonaException,
+			PersonaNoEncontradaException {
 		lp.insertarPersona(p5);
 		lp.insertarPersona(p5);
 		lp.insertarPersona(p5);
@@ -58,11 +64,11 @@ public class TestListaPersona {
 		lp.insertarPersona(p5);
 		assertTrue(lp.estaLlena());
 	}
-	
+
 	@Test
 	public void testSerializar() throws IOException {
 		lp.serializar();
-		assertThat(p1,new EsSerializado());
+		assertThat(p1, new EsSerializado());
 	}
 
 }

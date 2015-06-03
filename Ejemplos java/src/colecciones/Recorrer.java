@@ -2,7 +2,7 @@ package colecciones;
 
 import java.util.Iterator;
 
-public class Recorrer implements Iterator{
+public class Recorrer implements Iterator {
 
 	public boolean hasNext() {
 		// TODO Auto-generated method stub
@@ -16,7 +16,7 @@ public class Recorrer implements Iterator{
 
 	public void remove() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 }

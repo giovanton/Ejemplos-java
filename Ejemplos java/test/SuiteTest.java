@@ -6,9 +6,7 @@ import persona.TestPersona;
 import ejemploRepaso.base.TestListaPersona;
 
 @RunWith(Suite.class)
-@SuiteClasses({
-	TestListaPersona.class, TestPersona.class,
-})
+@SuiteClasses({ TestListaPersona.class, TestPersona.class, })
 public class SuiteTest {
 
 }
