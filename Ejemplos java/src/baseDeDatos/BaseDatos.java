@@ -27,7 +27,7 @@ public class BaseDatos {
 					"jdbc:oracle:thin:@localhost:1521:xe", "HR", "hr");
 			stmt = conn.createStatement();
 			rset = stmt
-					.executeQuery("select * from employees where HR.employees.Salary > 3000 order by Salary");
+					.executeQuery("select * from HR.employees where HR.employees.Salary > 3000 order by Salary");
 			ArrayList<Empleado> listaEmpleados = new ArrayList<Empleado>();
 			while (rset.next()) {
 				Empleado e = new Empleado(rset.getInt(1), rset.getString(2),

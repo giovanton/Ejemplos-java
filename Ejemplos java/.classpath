@@ -2,13 +2,14 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
-	<classpathentry kind="lib" path="/home/giovanton/Descargas/log4j-all-1.3alpha-8.jar"/>
-	<classpathentry kind="lib" path="/home/giovanton/Descargas/jdom-2.0.6.jar">
+	<classpathentry exported="true" kind="lib" path="/home/giovanton/Descargas/log4j-all-1.3alpha-8.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/giovanton/Descargas/jdom-2.0.6.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="jar:file:/home/giovanton/Descargas/jdom-2.0.6-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/home/giovanton/Descargas/ojdbc14.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

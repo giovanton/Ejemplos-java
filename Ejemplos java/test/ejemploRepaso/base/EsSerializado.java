@@ -15,7 +15,7 @@ public class EsSerializado extends TypeSafeMatcher<Persona> {
 	}
 
 	@Override
-	protected boolean matchesSafely(Persona p1) {
+	public boolean matchesSafely(Persona p1) {
 
 		boolean dev = false;
 		try {
