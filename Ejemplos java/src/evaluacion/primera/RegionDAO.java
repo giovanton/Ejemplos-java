@@ -52,7 +52,7 @@ public class RegionDAO {
 	}
 	
 	public static RegionDTO leerRegion(int id) throws SQLException {
-		//TODO leer una region de la tabla por su id
+		/* Método para leer una región de la tabla por su id*/
 		Connection con = null;
 		PreparedStatement pst = null;
 		RegionDTO region = null;
