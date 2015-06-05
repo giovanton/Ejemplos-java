@@ -1,5 +1,6 @@
 package evaluacion.primera;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,7 +27,7 @@ public class RegionDAO {
 		
 	}
 	
-	public void insertarRegion(String region_nueva) throws SQLException {
+	public static void insertarRegion(int id_nueva,String region_nueva) throws SQLException {
 		/* Método para insertar una región en BBDD*/
 		Connection con = null;
 		PreparedStatement pst = null;
@@ -35,7 +36,9 @@ public class RegionDAO {
 		con = Conexion.obtenerConexion();                   
 		con.setAutoCommit(false);
 		pst = con.prepareStatement(DeclaracionesSQL.insertaRegion);
-		pst.setString(1, region_nueva);
+		pst.setInt(1, id_nueva);
+		pst.setString(2, region_nueva);
+		pst.executeQuery();
 		con.commit();
 		} catch (SQLException e ) {
 			e.printStackTrace();
@@ -48,12 +51,32 @@ public class RegionDAO {
 		}
 	}
 	
-	public RegionDTO leerRegion() {
+	public static RegionDTO leerRegion(int id) throws SQLException {
 		//TODO leer una region de la tabla por su id
-		return null;
+		Connection con = null;
+		PreparedStatement pst = null;
+		RegionDTO region = null;
+		
+		try {
+			con = Conexion.obtenerConexion();
+			pst = con.prepareStatement(DeclaracionesSQL.recuperaRegion);
+			pst.setInt(1, id);
+			ResultSet rs = pst.executeQuery();
+			
+			while (rs.next()) {
+				region = new RegionDTO(rs.getInt(1), rs.getString(2));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("Error al recuperar id");
+			throw e;
+		} finally {
+			Conexion.liberarRecursos(con, pst);
+		}
+		return region;
 	}
 	
-	public List<RegionDTO> recuperarRegiones() throws SQLException{
+	public static List<RegionDTO> recuperarRegiones() throws SQLException{
 		/* Recupera todas las regiones de la tabla*/
 		Connection con = null;
 		Statement stm = null;
@@ -75,6 +98,8 @@ public class RegionDAO {
 			log.error("Error al recuperar regiones");
 			lr = null;
 			throw e;
+		}finally {
+			Conexion.liberarRecursos(con, stm, rs);
 		}
 		return lr;
 	}
